@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Button,
   Image,
   ImageBackground,
@@ -23,9 +24,26 @@ export default function App() {
         paddingHorizontal: 30,
       }}
     >
-      <ActivityIndicator size="large" />
-      <ActivityIndicator size="large" color="white" />
-      <ActivityIndicator size="large" color="white" animating={true} />
+      <Button
+        title="Alert Button"
+        onPress={() => Alert.alert("Alert Title", "Alert Message")}
+      />
+
+      <Button
+        title="Alert Button 2"
+        onPress={() =>
+          Alert.alert("Alert Title 2", "Alert Message 2", [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+            },
+            {
+              text: "Ok",
+              onPress: () => console.log("Ok Pressed"),
+            },
+          ])
+        }
+      />
     </View>
   );
 }
