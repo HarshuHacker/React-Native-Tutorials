@@ -12,6 +12,7 @@ import {
   Text,
   View,
 } from "react-native";
+import Greet from "./components/Greet";
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -24,26 +25,8 @@ export default function App() {
         paddingHorizontal: 30,
       }}
     >
-      <Button
-        title="Alert Button"
-        onPress={() => Alert.alert("Alert Title", "Alert Message")}
-      />
-
-      <Button
-        title="Alert Button 2"
-        onPress={() =>
-          Alert.alert("Alert Title 2", "Alert Message 2", [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-            },
-            {
-              text: "Ok",
-              onPress: () => console.log("Ok Pressed"),
-            },
-          ])
-        }
-      />
+    <Greet name="Harsh Prasad"/>
+    <Greet name="Ayush Prasad"/>
     </View>
   );
 }
