@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  ActivityIndicator,
   Button,
   Image,
   ImageBackground,
@@ -22,7 +23,9 @@ export default function App() {
         paddingHorizontal: 30,
       }}
     >
-      <StatusBar backgroundColor="green" barStyle="white" hidden={false} />
+      <ActivityIndicator size="large" />
+      <ActivityIndicator size="large" color="white" />
+      <ActivityIndicator size="large" color="white" animating={true} />
     </View>
   );
 }
