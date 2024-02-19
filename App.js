@@ -3,12 +3,19 @@ import { StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={[styles.lightbluebox, styles.box, styles.boxShadow]}>
-        <Text>Lightblue Box</Text>
+      <View
+        style={{ backgroundColor: "black", color: "white", marginBottom: 20 }}
+      >
+        <Text>Hello World</Text>
       </View>
-      <View style={[styles.lightgreenbox, styles.box, styles.androidShadow]}>
-        <Text>Lightgreen Box</Text>
+      {/* Inheritance Doesn't Works In View To Text */}
+
+      <View style={{ backgroundColor: "black", color: "white" }}>
+        <Text style={{ color: "white" }}>
+          Hello <Text style={{ fontWeight: "bold" }}>World</Text>
+        </Text>
       </View>
+      {/* Inheritance Works In Text To Text */}
     </View>
   );
 }
