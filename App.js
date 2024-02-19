@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     borderWidth: 6,
     borderColor: "red",
     // flex: 1,
-    height: 600,
+    height: 300,
     flexWrap: "wrap",
+    alignContent: "center"
     // flexDirection: "row",
   },
 });
