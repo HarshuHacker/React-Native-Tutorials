@@ -30,8 +30,11 @@ const styles = StyleSheet.create({
     borderColor: "red",
     // flex: 1,
     height: 300,
+    // rowGap: 20,
+    // columnGap: 20,
+    gap: 30,
     flexWrap: "wrap",
-    alignContent: "center"
+    alignContent: "center",
     // flexDirection: "row",
   },
 });
