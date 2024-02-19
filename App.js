@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     borderWidth: 6,
     borderColor: "red",
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    // flexDirection: "column",
+    justifyContent: "space-evenly",
   },
 });
