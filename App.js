@@ -4,7 +4,7 @@ import Box from "./components/Box";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Box style={{ backgroundColor: "#8e9b00" }}>Box 1</Box>
+      <Box style={{ backgroundColor: "#8e9b00", padding: 50 }}>Box 1</Box>
       <Box style={{ backgroundColor: "#b65d1f" }}>Box 2</Box>
       <Box style={{ backgroundColor: "#1c4c56" }}>Box 3</Box>
       {/* <Box style={{ backgroundColor: "#ab9156" }}>Box 4</Box>
@@ -24,5 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     // flexDirection: "column",
     justifyContent: "space-evenly",
+    // alignItems: "center",
+    alignItems: "baseline",
   },
 });
