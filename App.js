@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -26,9 +27,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    borderColor: "black",
+    borderColor: "white",
     borderWidth: 2,
     backgroundColor: "plum",
+    paddingTop: Platform.OS === 'android' ? 35 : 0
   },
   box: {
     padding: 20,
