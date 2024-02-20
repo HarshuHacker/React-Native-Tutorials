@@ -30,13 +30,22 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 2,
     backgroundColor: "plum",
-    paddingTop: Platform.OS === 'android' ? 35 : 0
+    paddingTop: Platform.OS === "android" ? 35 : 0,
   },
   box: {
     padding: 20,
   },
   text: {
-    fontSize: 24,
+    ...Platform.select({
+      ios: {
+        color: "purple",
+        fontSize: 20,
+      },
+      android: {
+        color: "blue",
+        fontSize: 40,
+      },
+    }),
     fontWeight: "bold",
     textAlign: "center",
   },
