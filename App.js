@@ -1,86 +1,118 @@
 import { useState } from "react";
 import {
-  SafeAreaView,
-  StatusBar,
+  Button,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
   View,
 } from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+    if (!username) errors.username = "Username is required";
+    if (!password) errors.password = "Password is required";
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Submitted", username, password);
+      setUsername("");
+      setPassword("");
+      setErrors({});
+    }
+  };
+
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        { backgroundColor: isDarkMode ? "black" : "white" },
-      ]}
+    <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 150 : 100}
+      style={styles.container}
     >
-      <TextInput
-        style={[styles.input, { color: !isDarkMode ? "black" : "white" }]}
-        value={name}
-        onChangeText={setName}
-        placeholder="Enter Your Name"
-        // secureTextEntry
-        keyboardType="default"
-        autoCorrect={false}
-        autoCapitalize="words"
-      />
-      <TextInput
-        style={[
-          styles.input,
-          styles.multiline,
-          ,
-          { color: !isDarkMode ? "black" : "white" },
-        ]}
-        placeholder="Message"
-        multiline
-      />
-      <Text style={{ color: !isDarkMode ? "black" : "white" }}>
-        Hello {name} !!
-      </Text>
-      <View style={styles.switchContainer}>
-        <Text style={[styles.text, { color: !isDarkMode ? "black" : "white" }]}>
-          Dark Mode
-        </Text>
-        <Switch
-          value={isDarkMode}
-          onValueChange={() => setIsDarkMode((previousState) => !previousState)}
-          trackColor={{ false: "#767577", true: "lightblue" }}
-          thumbColor="#f4f3f4"
+      {/* <View style={styles.container}> */}
+      <View style={styles.form}>
+        <Image
+          source={require("./assets/bulbasaur.png")}
+          style={styles.image}
         />
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Your Username"
+          value={username}
+          onChangeText={setUsername}
+        />
+        {errors.username ? (
+          <Text style={styles.errorText}>{errors.username}</Text>
+        ) : null}
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Your Password"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        {errors.password ? (
+          <Text style={styles.errorText}>{errors.password}</Text>
+        ) : null}
+        <Button title="Login" onPress={handleSubmit} />
       </View>
-    </SafeAreaView>
+      {/* </View> */}
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 20,
     backgroundColor: "#f5f5f5",
-    paddingTop: StatusBar.currentHeight,
+  },
+  form: {
+    backgroundColor: "#ffffff",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    fontWeight: "bold",
   },
   input: {
     height: 40,
-    margin: 12,
-    padding: 10,
+    borderColor: "#ddd",
     borderWidth: 1,
-  },
-  text: {
-    fontSize: 30,
+    marginBottom: 15,
     padding: 10,
+    borderRadius: 5,
   },
-  multiline: {
-    minHeight: 100,
-    textAlignVertical: "top",
+  image: {
+    width: 200,
+    height: 400,
+    alignSelf: "center",
+    marginBottom: 50,
   },
-  switchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 10,
+  errorText: {
+    color: "red",
+    marginBottom: 10,
   },
 });
