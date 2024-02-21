@@ -1,57 +1,58 @@
-import {
-  Dimensions,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
-import CustomButton from "./components/CustomButton/CustomButton";
+import { StyleSheet, SafeAreaView, Platform, ScrollView } from "react-native";
+import PokemonCard from "./components/PokemonCard";
 
 export default function App() {
+  const charmanderData = {
+    name: "Charmander",
+    image: require("./assets/charmander.png"),
+    type: "Fire",
+    hp: 39,
+    moves: ["Scratch", "Ember", "Growl", "Leer"],
+    weaknesses: ["Water", "Rock"],
+  };
+
+  const squirtleData = {
+    name: "Squirtle",
+    image: require("./assets/squirtle.png"), // Replace with the actual image path
+    type: "Water",
+    hp: 44,
+    moves: ["Tackle", "Water Gun", "Tail Whip", "Withdraw"],
+    weaknesses: ["Electric", "Grass"],
+  };
+
+  const bulbasaurData = {
+    name: "Bulbasaur",
+    image: require("./assets/bulbasaur.png"), // Replace with the actual image path
+    type: "Grass",
+    hp: 45,
+    moves: ["Tackle", "Vine Whip", "Growl", "Leech Seed"],
+    weaknesses: ["Fire", "Ice", "Flying", "Psychic"],
+  };
+
+  const pikachuData = {
+    name: "Pikachu",
+    image: require("./assets/pikachu.png"), // Replace with the actual image path
+    type: "Electric",
+    hp: 35,
+    moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
+    weaknesses: ["Ground"],
+  };
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <View style={styles.container}>
-        <View style={styles.box}>
-          <Text style={styles.text}>Welcome !!</Text>
-          <CustomButton
-            title="Button"
-            onPress={()=>console.log("Button Pressed")}
-          />
-        </View>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <PokemonCard {...charmanderData} />
+        <PokemonCard {...squirtleData} />
+        <PokemonCard {...bulbasaurData} />
+        <PokemonCard {...pikachuData} />
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-    backgroundColor: "plum",
-  },
   container: {
     flex: 1,
-    borderColor: "white",
-    borderWidth: 2,
-    backgroundColor: "plum",
-    paddingTop: Platform.OS === "android" ? 35 : 0,
-  },
-  box: {
-    padding: 20,
-  },
-  text: {
-    ...Platform.select({
-      ios: {
-        color: "purple",
-        fontSize: 20,
-      },
-      android: {
-        color: "blue",
-        fontSize: 40,
-      },
-    }),
-    fontWeight: "bold",
-    textAlign: "center",
+    backgroundColor: "#f5f5f5",
+    paddingTop: Platform.OS === "android" ? 50 : 0,
   },
 });
