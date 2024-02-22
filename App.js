@@ -1,46 +1,39 @@
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
 import AboutScreen from "./screens/AboutScreen";
-import { Pressable, Text } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import DashboardScreen from "./screens/DashboardScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
         screenOptions={{
-          headerStyle: { backgroundColor: "#6a51ae" },
-          headerTitleStyle: { fontWeight: "bold" },
-          headerTintColor: "#fff",
-          contentStyle: { backgroundColor: "#e8e4f3" },
+          drawerActiveTintColor: "#333",
+          drawerActiveBackgroundColor: "lightgreen",
+          drawerContentStyle: {
+            backgroundColor: "#c6cbef",
+          },
         }}
       >
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+        <Drawer.Screen
+          name="Dashboard"
+          component={DashboardScreen}
           options={{
-            title: "Welcome Home",
-            headerStyle: { backgroundColor: "#3a51ae" },
-            headerRight: () => (
-              <Pressable onPress={() => alert("Menu Pressed")}>
-                <Text style={{ color: "#fff", fontSize: 16 }}>Menu</Text>
-              </Pressable>
-            ),
+            title: "My Dashboard",
+            drawerLabel: "My Dashboard Drawer",
+            drawerActiveTintColor: "#333",
+            drawerActiveBackgroundColor: "lightblue",
+            drawerContentStyle: {
+              backgroundColor: "#c6cbef",
+            },
           }}
         />
-        <Stack.Screen
-          name="About"
-          component={AboutScreen}
-          initialParams={{
-            name: "Guest",
-          }}
-          // options={({ route }) => ({
-          //   title: "About " + route.params.name,
-          // })}
-        />
-      </Stack.Navigator>
+        <Drawer.Screen name="Setting" component={SettingsScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
